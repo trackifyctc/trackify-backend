@@ -22,15 +22,10 @@ async function bootstrap() {
   );
 
   // CORS
-  app.enableCors({
-    origin: [
-      'http://localhost:5173',
-      'http://127.0.0.1:5173',
-      'http://localhost:3000',
-      'https://trackifyte.lid',
-    ],
-    credentials: true,
-  });
+ app.enableCors({
+  origin: true,
+  credentials: true,
+});
 
   const port = configService.get('PORT', 3001);
   await app.listen(port);
