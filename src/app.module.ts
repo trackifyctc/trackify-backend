@@ -45,7 +45,7 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
         database: configService.get('DATABASE_NAME', 'trackify'),
         entities: [User, Inventory, Location, Device, DeviceAlert, ActivityLog, ScanHistory, Task, CameraCapture],
         migrations: [__dirname + '/migrations/*{.ts,.js}'],
-        synchronize: false,
+        synchronize: true,
         logging: configService.get('NODE_ENV') === 'development',
       }),
     }),
