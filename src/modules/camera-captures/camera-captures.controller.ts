@@ -29,10 +29,9 @@ export class CameraCapturesController {
   @Get()
   @UseGuards(JwtGuard)
   async findAll(
-    @Query('skip') skip: number = 0,
-    @Query('take') take: number = 20,
+    @Query() query: any,
   ) {
-    return this.cameraCapturesService.findAll(skip, take);
+    return this.cameraCapturesService.findAll(query);
   }
 
   @Get('alerts')
@@ -57,7 +56,6 @@ export class CameraCapturesController {
   }
 
   @Post()
-  @UseGuards(JwtGuard)
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() createData: Partial<any>) {
     return this.cameraCapturesService.create(createData);
