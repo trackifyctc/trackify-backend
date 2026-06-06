@@ -11,15 +11,25 @@ export class CameraCapturesService {
     private cameraCaptureRepository: Repository<CameraCapture>,
   ) {}
 
-  async create(createData: Partial<CameraCapture>): Promise<CameraCapture> {
-    const capture = this.cameraCaptureRepository.create(createData);
+  async create(createData: Partial<CameraCapture>) {
+
+    console.log('=== CREATE DATA ===');
+    console.log(JSON.stringify(createData, null, 2));
+
+    const capture =
+      this.cameraCaptureRepository.create(createData);
 
     const savedCapture =
       await this.cameraCaptureRepository.save(capture);
 
+    console.log('=== SAVED DATA ===');
+    console.log(JSON.stringify(savedCapture, null, 2));
+
     await this.sendTelegramNotification(savedCapture);
+
     return savedCapture;
   }
+  
   async findAll(filters: any): Promise<any> {
     console.log('MASUK FINDALL');
     console.log(filters);
