@@ -88,12 +88,6 @@ export class ServoService {
     });
   }
 
-  async getLastCommandByDirection(deviceId: string, direction: ServoDirection): Promise<ServoCommand | null> {
-    return this.servoCommandRepository.findOne({
-      where: { device_id: deviceId, direction },
-      order: { created_at: 'DESC' },
-    });
-  }
   async getLastCommandByDirection(
     deviceId: string,
     direction: ServoDirection,
@@ -118,7 +112,7 @@ export class ServoService {
       },
     });
 
-private getDefaultAngle(direction: ServoDirection): number {
+  }
   
   private getDefaultAngle(direction: ServoDirection): number {
     const angles: Record<ServoDirection, number> = {
