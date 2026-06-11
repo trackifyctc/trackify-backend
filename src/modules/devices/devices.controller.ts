@@ -128,13 +128,18 @@ export class DevicesController {
   }
 
   @Get(':deviceId/servo/history')
+  @UseGuards(JwtGuard)
+  async getServoHistory(
+    @Param('deviceId') deviceId: string,
+  ) {
+    return this.servoService.getCommandHistory(deviceId);
+  }
+
   @Get(':deviceId/servo/pending')
   async getPendingCommand(
     @Param('deviceId') deviceId: string,
   ) {
-    return this.servoService.getPendingCommand(
-      deviceId,
-    );
+    return this.servoService.getPendingCommand(deviceId);
   }
   @UseGuards(JwtGuard)
   async getServoHistory(@Param('deviceId') deviceId: string) {
